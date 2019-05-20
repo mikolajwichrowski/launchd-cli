@@ -1,5 +1,7 @@
-extern crate clap;
-extern crate structopt;
+#![deny(warnings)]
+
+crate clap;
+crate structopt;
 
 use std::path::PathBuf;
 use structopt::StructOpt;
@@ -8,7 +10,6 @@ use clap::{Arg, App};
 // use std::process;
 // use std::fs::File;
 // use std::io::{Read};
-
 // mod daemon_lib;
 
 /// Struct for commands

@@ -3,10 +3,7 @@ struct file_result {
     pub result: Result<i32, &str>
 }
 
-pub fn get_path(command_input: String) -> file_result {
-    // TODO: get relative file path
-    // TODO: check if file is executable, if not then ask if it needs to be
-    
+pub fn get_path(command_input: String) -> file_result {   
     return file_result {
         relative_path: "/",
         result: Err("File not found")
