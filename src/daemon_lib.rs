@@ -1,3 +1,3 @@
 pub fn create() -> bool {
-    return true;
+   true;
 }
