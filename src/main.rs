@@ -9,7 +9,7 @@ use clap::{Arg, App};
 // use std::fs::File;
 // use std::io::{Read};
 
-mod daemon_lib;
+// mod daemon_lib;
 
 /// Struct for commands
 #[derive(StructOpt, Debug)]
@@ -32,9 +32,9 @@ struct Opt {
     time: Option<i32>
 }
 
+/// Main method
 fn main() {
     let opt = Opt::from_args();
-    println!("{:?}", opt); 
     
     match opt.method.as_ref() {
         "create" => {
@@ -44,13 +44,13 @@ fn main() {
             unimplemented!();
         },
         "modify" => {
-            println!("modifying");
+            unimplemented!();
         },
         "remove" => {
-            println!("removing");
+            unimplemented!();
         },
         _ => {
-            println!("command not found");
+           unimplemented!(); 
         }
     }
 }
