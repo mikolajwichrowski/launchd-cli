@@ -1,5 +1,8 @@
 extern crate clap;
+extern crate structopt;
 
+use std::path::PathBuf;
+use structopt::StructOpt;
 use clap::{Arg, App};
 // use std::path::Path;
 // use std::process;
@@ -8,40 +11,50 @@ use clap::{Arg, App};
 
 mod daemon_lib;
 
+/// Struct for commands
+#[derive(StructOpt, Debug)]
+#[structopt(name = "commands")]
+struct Opt {
+    /// Launchd-cli type of command
+    #[structopt(name="METHOD")]
+    method: String,
+
+    /// Script to run
+    #[structopt(name = "FILE", parse(from_os_str))]
+    files: Option<PathBuf>,
+
+    /// Launchd task name
+    #[structopt(short = "n", long = "name", parse(from_os_str))]
+    output: Option<PathBuf>,
+
+    /// Launchd task time
+    #[structopt(short = "every", long = "every")]
+    time: Option<i32>
+}
+
 fn main() {
-    let matches = App::new("launchd-cli")
-      .version("0.1.0")
-      .author("MMW")
-      .about("A launchd cli tool written in Rust")
-      .arg(Arg::with_name("command")
-            .help("create/list/modify/remove")
-            .empty_values(false)
-        )
-      .get_matches();
+    let opt = Opt::from_args();
+    println!("{:?}", opt); 
     
-    if let Some(command) = matches.value_of("command") {
-        match command {
-            "create" => {
-                if daemon_lib::create() {
-                    println!("creating");
-                }
-            },
-            "list" => {
-                println!("listing");
-            },
-            "modify" => {
-                println!("modifying");
-            },
-            "remove" => {
-                println!("removing");
-            },
-            _ => {
-                println!("command not found");
+    match opt.method.as_ref() {
+        "create" => {
+            // TODO: pass values to create method
+            // TODO: create /file(.sh/.py/executable) every 10 min/sec/hours 
+            if daemon_lib::create() {
+                println!("creating");
             }
+        },
+        "list" => {
+            println!("listing");
+        },
+        "modify" => {
+            println!("modifying");
+        },
+        "remove" => {
+            println!("removing");
+        },
+        _ => {
+            println!("command not found");
         }
-        
-        // if deamon_lib::create() {
-        //     println!("{}", command);
-        // }
     }
 }
