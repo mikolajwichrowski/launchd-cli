@@ -1,11 +1,9 @@
 #![deny(warnings)]
 
-crate clap;
-crate structopt;
-
 use std::path::PathBuf;
+use structopt;
 use structopt::StructOpt;
-use clap::{Arg, App};
+
 // use std::path::Path;
 // use std::process;
 // use std::fs::File;
@@ -17,7 +15,7 @@ use clap::{Arg, App};
 #[structopt(name = "commands")]
 struct Opt {
     /// Launchd-cli type of command
-    #[structopt(name="METHOD")]
+    #[structopt(name = "METHOD")]
     method: String,
 
     /// Script to run
@@ -30,28 +28,28 @@ struct Opt {
 
     /// Launchd task time
     #[structopt(short = "every", long = "every")]
-    time: Option<i32>
+    time: Option<i32>,
 }
 
 /// Main method
 fn main() {
     let opt = Opt::from_args();
-    
+
     match opt.method.as_ref() {
         "create" => {
-            unimplemented!(); 
-        },
+            unimplemented!();
+        }
         "list" => {
             unimplemented!();
-        },
+        }
         "modify" => {
             unimplemented!();
-        },
+        }
         "remove" => {
             unimplemented!();
-        },
+        }
         _ => {
-           unimplemented!(); 
+            unimplemented!();
         }
     }
 }
