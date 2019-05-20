@@ -38,14 +38,10 @@ fn main() {
     
     match opt.method.as_ref() {
         "create" => {
-            // TODO: pass values to create method
-            // TODO: create /file(.sh/.py/executable) every 10 min/sec/hours 
-            if daemon_lib::create() {
-                println!("creating");
-            }
+            unimplemented!(); 
         },
         "list" => {
-            println!("listing");
+            unimplemented!();
         },
         "modify" => {
             println!("modifying");
