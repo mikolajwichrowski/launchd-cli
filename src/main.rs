@@ -3,12 +3,7 @@
 use std::path::PathBuf;
 use structopt;
 use structopt::StructOpt;
-
-// use std::path::Path;
-// use std::process;
-// use std::fs::File;
-// use std::io::{Read};
-// mod daemon_lib;
+mod daemon_lib;
 
 /// Struct for commands
 #[derive(StructOpt, Debug)]
@@ -36,9 +31,7 @@ fn main() {
     let opt = Opt::from_args();
 
     match opt.method.as_ref() {
-        "create" => {
-            unimplemented!();
-        }
+        "create" => daemon_lib::create(),
         "list" => {
             unimplemented!();
         }
@@ -51,5 +44,5 @@ fn main() {
         _ => {
             unimplemented!();
         }
-    }
+    };
 }
