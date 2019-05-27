@@ -33,18 +33,22 @@ fn main() {
     let opt = Opt::from_args();
 
     let result = match opt.method.as_ref() {
+        // This creates the nessecary xml file and starts the launchd command
         "create" => daemon_lib::create(),
+        // This lists all the generated launchd jobs
         "list" => {
             unimplemented!();
         }
+        // This changes the launchd job xml file and restarts the job
         "modify" => {
             unimplemented!();
         }
+        // This removes the launchd job and the xml file 
         "remove" => {
             unimplemented!();
         }
         _ => {
-            unimplemented!();
+            println!("Command not found");
         }
     };
 
