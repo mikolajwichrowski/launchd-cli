@@ -5,5 +5,7 @@ authors = ["mikolajwichrowski"]
 edition = "2018"
 
 [dependencies]
-clap = "~2.32"
+clap = "2.33"
 structopt = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde-xml-rs = "0.3.1"

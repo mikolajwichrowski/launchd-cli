@@ -1,9 +1,11 @@
 #![deny(warnings)]
+mod helpers;
 
 use std::path::PathBuf;
 use structopt;
 use structopt::StructOpt;
-mod daemon_lib;
+use crate::helpers::daemon_lib;
+
 
 /// Struct for commands
 #[derive(StructOpt, Debug)]
@@ -30,7 +32,7 @@ struct Opt {
 fn main() {
     let opt = Opt::from_args();
 
-    match opt.method.as_ref() {
+    let result = match opt.method.as_ref() {
         "create" => daemon_lib::create(),
         "list" => {
             unimplemented!();
@@ -43,6 +45,15 @@ fn main() {
         }
         _ => {
             unimplemented!();
+        }
+    };
+
+    match result {
+        Err(result) => {
+            println!("Something went wrong, Error: {:?}", result);
+        },
+        _ => {
+            println!("Command executed succesfully");
         }
     };
 }
